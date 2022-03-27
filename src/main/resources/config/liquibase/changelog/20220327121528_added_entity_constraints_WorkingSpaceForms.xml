@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity WorkingSpaceForms.
+    -->
+    <changeSet id="20220327121528-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="order_id"
+                                 baseTableName="working_space_forms"
+                                 constraintName="fk_working_space_forms__order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="orders"/>
+
+        <addForeignKeyConstraint baseColumnNames="payment_id"
+                                 baseTableName="working_space_forms"
+                                 constraintName="fk_working_space_forms__payment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payments"/>
+
+        <addForeignKeyConstraint baseColumnNames="working_space_forms_id"
+                                 baseTableName="rel_working_space_forms__services"
+                                 constraintName="fk_rel_working_space_forms__services__working_space_forms_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="working_space_forms"/>
+
+        <addForeignKeyConstraint baseColumnNames="services_id"
+                                 baseTableName="rel_working_space_forms__services"
+                                 constraintName="fk_rel_working_space_forms__services__services_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="services"/>
+
+        <addForeignKeyConstraint baseColumnNames="customers_id"
+                                 baseTableName="working_space_forms"
+                                 constraintName="fk_working_space_forms__customers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customers"/>
+    </changeSet>
+</databaseChangeLog>

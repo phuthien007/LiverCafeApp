@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity OrderDetails.
+    -->
+    <changeSet id="20220327121527-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="order_details_id"
+                                 baseTableName="rel_order_details__drinks"
+                                 constraintName="fk_rel_order_details__drinks__order_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="drinks_id"
+                                 baseTableName="rel_order_details__drinks"
+                                 constraintName="fk_rel_order_details__drinks__drinks_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="drinks"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_details_id"
+                                 baseTableName="rel_order_details__books"
+                                 constraintName="fk_rel_order_details__books__order_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="books_id"
+                                 baseTableName="rel_order_details__books"
+                                 constraintName="fk_rel_order_details__books__books_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="books"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_details_id"
+                                 baseTableName="rel_order_details__foods"
+                                 constraintName="fk_rel_order_details__foods__order_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="foods_id"
+                                 baseTableName="rel_order_details__foods"
+                                 constraintName="fk_rel_order_details__foods__foods_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="foods"/>
+
+        <addForeignKeyConstraint baseColumnNames="orders_id"
+                                 baseTableName="order_details"
+                                 constraintName="fk_order_details__orders_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="orders"/>
+    </changeSet>
+</databaseChangeLog>

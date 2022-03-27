@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity WorkingSpaceForms.
+    -->
+    <changeSet id="20220327121528-1" author="jhipster">
+        <createTable tableName="working_space_forms">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="time_start" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="time_end" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="price_total" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="name_event" type="varchar(5000)">
+                <constraints nullable="true" />
+            </column>
+            <column name="note" type="varchar(5000)">
+                <constraints nullable="true" />
+            </column>
+            <column name="quantity_people" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_deposit" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="updated_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="updated_by" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="order_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_working_space_forms__order_id" />
+            </column>
+            <column name="payment_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_working_space_forms__payment_id" />
+            </column>
+            <column name="customers_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="working_space_forms" columnName="time_start" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="working_space_forms" columnName="time_end" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="working_space_forms" columnName="created_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="working_space_forms" columnName="updated_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20220327121528-1-relations" author="jhipster">
+
+        <createTable tableName="rel_working_space_forms__services">
+            <column name="services_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="working_space_forms_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="working_space_forms_id, services_id" tableName="rel_working_space_forms__services"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220327121528-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/working_space_forms.csv"
+                  separator=";"
+                  tableName="working_space_forms"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="time_start" type="date"/>
+            <column name="time_end" type="date"/>
+            <column name="price_total" type="numeric"/>
+            <column name="name_event" type="string"/>
+            <column name="note" type="string"/>
+            <column name="quantity_people" type="numeric"/>
+            <column name="status" type="string"/>
+            <column name="percent_deposit" type="numeric"/>
+            <column name="created_date" type="date"/>
+            <column name="created_by" type="numeric"/>
+            <column name="updated_date" type="date"/>
+            <column name="updated_by" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

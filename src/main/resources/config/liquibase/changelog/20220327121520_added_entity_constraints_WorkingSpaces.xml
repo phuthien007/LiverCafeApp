@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity WorkingSpaces.
+    -->
+    <changeSet id="20220327121520-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="working_spaces_id"
+                                 baseTableName="rel_working_spaces__working_space_forms"
+                                 constraintName="fk_rel_working_spaces__working_space_forms__working_spaces_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="working_spaces"/>
+
+        <addForeignKeyConstraint baseColumnNames="working_space_forms_id"
+                                 baseTableName="rel_working_spaces__working_space_forms"
+                                 constraintName="fk_rel_working_spaces__working___working_space_forms_47_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="working_space_forms"/>
+    </changeSet>
+</databaseChangeLog>

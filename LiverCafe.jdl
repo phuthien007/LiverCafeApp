@@ -1,0 +1,250 @@
+// Thông tin về đồ uống
+entity Drinks {
+	idDrink String required minlength(6) // mã đồ uống
+	name String  required maxlength(3000) // tên đồ uống 
+    price Double  required // giá của đồ uống
+    description String maxlength(5000)// mô tả của đồ uống
+    status CommonStatus // trạng thái của đồ uống này
+    createdDate Instant // ngày tạo 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin 
+    updatedBy Long // người sửa
+}
+
+entity Foods {
+	idFood String required minlength(6) // mã đồ ăn
+    nam String required maxlength(3000) // tên đồ ăn
+    price Double required // giá của đồ ăn
+    description String maxlength(5000) // mô tả của đồ ăn
+    status CommonStatus // trạng thái của đồ ăn 
+    createdDate Instant // ngày tạo
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+// Thông tin về sách
+entity Books{
+	idBook String required minlength(6) // mã sách
+    name String required maxlength(3000) // tên sách
+    author String maxlength(3000)// tên tác giả
+    price Double // giá quyển sách
+    quantity Long // số lượng sách hiện có
+    status CommonStatus // các trạng thái của sách
+    descriptioin String maxlength(5000)// mô tả của sách
+    createdDate Instant // ngày tạo/ ngày nhập sách về 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin 
+    updatedBy Long // người sửa
+}
+
+// Thông tin về Working space
+entity WorkingSpaces{
+	name String required maxlength(3000)// tên working space
+    location String required maxlength(5000)// địa chỉ của workingspace
+    quantityCanHold Long // số lượng có thể chứa
+    pricePerHour Long // giá phòng 1 tiếng
+ 	createdDate Instant // ngày tạo
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin 
+    updatedBy Long // người sửa
+}
+
+// Thông tin về dịch vụ trong working space
+entity Services{
+	name String required maxlength(3000)// tên của dịch vụ
+    status ServiceStatus required // loại dịch vụ
+	createdDate Instant // ngày tạo
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin 
+    updatedBy Long // người sửa
+}
+
+// Thông tin khách hàng
+entity Customers{
+	customerName String maxlength(3000)// tên khách hàng
+    address String maxlength(5000)// địa chỉ khách hàng
+    telephone String // sdt khách hàng
+    status CustomerStatus // trạng thái khách hàng
+    accumulatedPoints Double // điểm tích lũy khi mua hàng
+    createdDate Instant // ngày tạo 
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+entity Vouchers{
+	idVoucher String required minlength(10) // mã khuyến mãi
+	name String maxlength(5000) // tên khuyến mãi
+    description String maxlength(5000) // mô tả của khuyến mãi
+    percentPromotion Double // phần trăm khuyến mãi
+    maxTotalMoneyPromotion Double // số tiền tối đa khuyến mãi
+    active Boolean // trạng thái của khuyến mãi
+    startTime Instant // ngày bắt đầu khuyến mại
+    endTime Instant // ngày kết thúc khuyến mãi
+    createdDate Instant // ngày tạo khuyến mãi
+    createdBy Long // người tạo khuyến mãi
+    updatedDate Instant // ngày sửa khuyến mãi
+    updatedBy Long // người sửa thông tin khuyến mãi
+}
+
+// Thông tin tài khoản
+entity Users{
+	username String required // tên đăng nhập
+    password String required // mật khẩu để đăng nhập
+    forgotPasswordToken String // thông tin để lấy lại mật khẩu
+    email String required // email của khách hàng
+    failedCounter Long // số lần đăng nhập lỗi < 5
+    status UserStatus // trạng thái của tài khoản
+    updatedBy Long // người chỉnh sửa
+    createdDate Instant // ngày tạo 
+    updatedDate Instant // ngày cập nhật thông tin
+}
+// Các loại tài khoản
+entity Roles{
+	type RoleTypes  // các loại vai trò
+    description String maxlength(5000) // mô tả
+}
+
+// Thông tin đơn đặt hàng
+entity Orders{
+	address String maxlength(5000)// địa chỉ nếu không điển sẽ là địa chỉ trên tài khoản
+    note String maxlength(5000)// ghi chú của đơn hàng
+    priceTotal Double // tổng giá trị đơn hàng
+    status OrderStatus // trạng thái đơn hàng
+    createdDate Instant // ngày tạo 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+// Thông tin chi tiết đơn hàng
+entity OrderDetails{
+	quantity Long // số lượng mặt hàng được đặt
+    description String maxlength(5000)// mô tả cho mặt hàng
+    note String maxlength(5000)// ghi chú cho mặt hàng
+    createdDate Instant // ngày tạo 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+// Thông tin đơn đăng ký workingspace
+entity WorkingSpaceForms{
+	timeStart Instant // thời gian bắt đầu
+    timeEnd Instant // thời gian kết thúc
+    priceTotal Long // tổng giá
+    nameEvent String maxlength(5000) // tên sự kiện
+    note String maxlength(5000) // chú ý về sự kiện
+    quantityPeople Long // số lượng người tham gia
+    status WorkingSpaceStatus // trạng thái đơn đăng ký
+    percentDeposit Double // phần trăm đặt cọc
+    createdDate Instant // ngày tạo 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+// Thông tin thanh toán
+entity Payments{
+	totalPrice Double // tổng tiền phải trả
+    status PaymentStatus // trạng thái thanh toán
+	createdDate Instant // ngày tạo 
+    createdBy Long // người tạo
+    updatedDate Instant // ngày cập nhật thông tin
+    updatedBy Long // người sửa
+}
+
+// Trạng thái thanh toán
+enum PaymentStatus{	
+	DEPOSITED // đã đặt cọc
+    PAID // đã thanh toán
+    NOT_DEPOSIT_YET // chưa đặt cọc
+    UNPAID // chưa thanh toán
+}
+
+// Trạng thái đơn đăng ký
+enum WorkingSpaceStatus{
+	INJECTED // từ chối đơn đăng ký
+    PENDING // chờ xác nhận
+    ACCEPTED // đơn được chấp nhận
+}
+
+// Thông tin trạng thái đơn hàng
+enum OrderStatus{
+	PENDING // chờ xác nhận
+    ACCEPTED // được chấp nhận
+  	DELIVERING // đang được giao
+    RECEIVED // đã nhận hàng
+    INJECTED // từ chối đơn hàng
+    CANCEL // khách hàng hủy bỏ đơn hàng
+}
+
+// Thông tin về trạng thái dịch vụ
+enum ServiceStatus{
+	CURRENT // trạng thái hiện được phục vụ
+    HOT // dịch vụ đang hot
+    NEW // dịch vụ mới
+}
+
+// Trạng thái tài khoản
+enum UserStatus{
+	LOCKED // tài khoản bị khóa
+    CURRENT // tài khoản mở
+}
+
+// Các loại tài khoản
+enum RoleTypes{
+	ROLE_ADMIN
+    ROLE_EMPLOYEE
+    ROLE_CUSTOMER
+    ROLE_ANOYMOUS
+}
+
+
+// Trạng thái khách hàng
+enum CustomerStatus{
+	NOMAL // khách hàng bình thường
+    COPPER // khách hàng hạng đồng (vip) 
+    SLIVER // khách hàng hạng bạc (vip)
+    GOLD // khách hàng hạng vàng (vip)
+    DIAMOND // khách hàng hạng kim cương ( vip)
+}
+
+// Trạng thái 
+enum CommonStatus {
+	SOLD_OUT // hàng đã bán hết
+    NEW // hàng mới
+    HOT // hàng đang hot
+    CURRENT // hàng đang được bán
+}
+
+relationship OneToMany{
+	 Orders{orderDetails} to OrderDetails
+    Vouchers {payments} to Payments
+    Customers{orders} to Orders
+   Customers{workingSpaceForms} to WorkingSpaceForms 
+}
+
+relationship ManyToMany{
+	WorkingSpaces{workingSpaceForms} to WorkingSpaceForms{workingSpaces}
+	WorkingSpaceForms{services} to Services{workingSpaceForms}
+    Vouchers{customers} to Customers{vouchers}
+    OrderDetails{drinks} to Drinks{orderDetails} 
+    OrderDetails{books} to Books{orderDetails} 
+    OrderDetails{foods} to Foods{orderDetails}
+    Users{roles} to Roles{users}
+}
+
+relationship OneToOne{
+	Customers{user} to Users{customer}
+    WorkingSpaceForms{order} to Orders{workingSpaceForm}
+    WorkingSpaceForms{payment} to Payments{workingSpaceForm}
+    Orders{payment} to Payments{order}
+}
+
+
+dto * with mapstruct
+service all with serviceClass
+paginate * with pagination
+
+
